@@ -26,12 +26,15 @@ body > section {
   display: none;
   left: 0px;
   position: absolute;
+  width: 100%;
+  z-index: -10;
 }
 
 .reverse {}
 
 .current {
   display: block;
+  z-index: 1;
 }
 h1, h2 {
   color: #4C566C;
