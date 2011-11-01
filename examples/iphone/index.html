@@ -37,18 +37,34 @@
           var activate = ('createTouch' in document) ? 'touchstart' : 'click';
 
           $("body > section").first().addClass("current")
+          
+          $('.current').anim({ translate3d: '0, 0, 0'}, 1, 'ease-in');
 
           $("a.back").live(activate, function(event) {
+              
             var current = $(this).attr("href");
+            
             $(".current").removeClass("current").addClass("reverse");
+            
+            $('.reverse').anim({ translate3d: '-' + window.innerWidth + 'px, 0, 0'}, 1, 'ease-in-out');
+            
             $(current).addClass("current");
+            
+            $('.current').anim({ translate3d: '0, 0, 0'}, 1, 'ease-in-out');
           });
 
           $(".menu a[href]").live(activate, function(event) {
             var link = $(this), section = link.closest('section'),
               prev_element = "#"+(section.removeClass("current").addClass("reverse").attr("id"));
+              
+            $('.reverse').anim({ translate3d: '-' + window.innerWidth + 'px, 0, 0'}, 1, 'ease-in-out');
+              
             $(link.attr("href")).addClass("current");
+            
+            $('.current').anim({ translate3d: '0, 0, 0'}, 1, 'ease-in-out');
+            
             $(".current .back").remove();
+            
             $(".current .toolbar").prepend("<a href=\""+prev_element+"\" class=\"back\">Back</a>");
           });
         });
